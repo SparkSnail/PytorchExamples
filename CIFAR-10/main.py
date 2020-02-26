@@ -4,6 +4,7 @@ from torchvision import datasets
 from torchvision import transforms
 from torch import nn, optim
 from lenet5 import Lenet5
+from resnet import ResNet18
 
 def main():
     batch_size = 32
@@ -23,7 +24,7 @@ def main():
     print('x:', x.shape, 'label:', label.shape)
 
     device = torch.device('cuda')
-    model = Lenet5().to(device)
+    model = ResNet18().to(device)
     criteon = nn.CrossEntropyLoss().to(device)
     optimizer = optim.Adam(model.parameters(), lr = 1e-3)
     print(model)
@@ -64,9 +65,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
-    print(torch.cuda.device_count())
-    print(torch.cuda.get_device_name(0))
-    print(torch.cuda.is_available())
-    device = torch.device('cuda')
-    print(device.type)
+    main()
